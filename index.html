@@ -26,6 +26,27 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   </script>
+  <script>
+  const auth = firebase.auth();
+
+  function login() {
+    const email = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        window.location.href = "home.html";
+      })
+      .catch((error) => {
+        alert("Login failed: " + error.message);
+      });
+  }
+
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    login();
+  });
+  </script>
 <body>
   <div class="container">
     <h2>Welcome to <span>RIGELSTORE</span></h2>
